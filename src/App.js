@@ -7,7 +7,7 @@ import Users from "./components/users/Users";
 
 function App() {
   const url = "https://randomuser.me/api/";
-  const defaultImage = "https://randomuser.me/api/portraits/men/75.jpg";
+  // const defaultImage = "https://randomuser.me/api/portraits/men/75.jpg";
   const [user, setUser] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -27,7 +27,7 @@ function App() {
 
   return (
     <main>
-      <Users defaultImage={defaultImage} user={user} />
+      <Users user={user} users={users} />
 
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Footer />
