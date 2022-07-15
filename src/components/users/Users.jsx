@@ -21,7 +21,11 @@ const Users = ({ defaultImage, user, users }) => {
     login: { password },
   } = user;
 
-  console.log(user);
+  const [tableValue, setTableValue] = useState([]);
+  const [propert, setPropert] = useState("");
+  const [userValue, setUserValue] = useState("");
+
+  //   console.log(user);
   const usersValue = {
     email: email,
     phone: phone,
@@ -30,16 +34,14 @@ const Users = ({ defaultImage, user, users }) => {
     street: street.name + " " + street.number,
     password: password,
   };
-  console.log(usersValue);
-
-  const [propert, setPropert] = useState("");
-  const [userValue, setUserValue] = useState("");
 
   const handleChange = (e) => {
     // e.target.style.background = "red";
-    setPropert(e.target.alt);
-    const value = e.target.alt;
-    setUserValue(usersValue[value]);
+    if (e.target.classList.contains("iconImg")) {
+      setPropert(e.target.alt);
+      const value = e.target.alt;
+      setUserValue(usersValue[value]);
+    }
   };
 
   const handleChangeUser = () => {
@@ -47,7 +49,9 @@ const Users = ({ defaultImage, user, users }) => {
     setUserValue(usersValue.name);
   };
 
-  const handleAddUser = () => {};
+  const handleAddUser = () => {
+    setTableValue([...tableValue, usersValue]);
+  };
   return (
     <>
       <div className="block bcg-orange">
@@ -58,24 +62,39 @@ const Users = ({ defaultImage, user, users }) => {
           <img src={medium} alt="random user" className="user-img" />
           <p className="user-title">My {propert || "name"} is</p>
           <p className="user-value">{userValue || usersValue.name}</p>
-          <div className="values-list" onClick={handleChange}>
+          <div className="values-list" onMouseOver={handleChange}>
             <button className="icon" data-label="name">
-              <img src={womanSvg} alt="name" id="iconImg" />
+              <img src={womanSvg} alt="name" className="iconImg" id="iconImg" />
             </button>
             <button className="icon" data-label="email">
-              <img src={mailSvg} alt="email" id="iconImg" />
+              <img src={mailSvg} alt="email" className="iconImg" id="iconImg" />
             </button>
             <button className="icon" data-label="age">
-              <img src={womanAgeSvg} alt="age" id="iconImg" />
+              <img
+                src={womanAgeSvg}
+                alt="age"
+                className="iconImg"
+                id="iconImg"
+              />
             </button>
             <button className="icon" data-label="street">
-              <img src={mapSvg} alt="street" id="iconImg" />
+              <img src={mapSvg} alt="street" className="iconImg" id="iconImg" />
             </button>
             <button className="icon" data-label="phone">
-              <img src={phoneSvg} alt="phone" id="iconImg" />
+              <img
+                src={phoneSvg}
+                alt="phone"
+                className="iconImg"
+                id="iconImg"
+              />
             </button>
             <button className="icon" data-label="password">
-              <img src={padlockSvg} alt="password" id="iconImg" />
+              <img
+                src={padlockSvg}
+                alt="password"
+                className="iconImg"
+                id="iconImg"
+              />
             </button>
           </div>
           <div className="btn-group">
@@ -96,7 +115,7 @@ const Users = ({ defaultImage, user, users }) => {
               </tr>
             </thead>
             <tbody>
-              <AddUser usersValue={usersValue} />
+              <AddUser tableValue={tableValue} />
             </tbody>
           </table>
         </div>
