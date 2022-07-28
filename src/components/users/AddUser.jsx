@@ -14,10 +14,6 @@ const AddUser = ({ tableValue }) => {
           </tr>
         );
       })}
-      {/* <td>{usersValue.name}</td>
-      <td>{usersValue.email}</td>
-      <td>{usersValue.phone}</td>
-      <td>{usersValue.age}</td> */}
     </>
   );
 };
